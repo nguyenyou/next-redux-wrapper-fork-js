@@ -10,11 +10,15 @@
   },
   "packageManager": "pnpm@6.30.0",
   "dependencies": {
+    "@chakra-ui/react": "^1.8.3",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@reduxjs/toolkit": "^1.7.2",
+    "framer-motion": "^6",
     "next": "^12.0.10",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-redux": "^7.2.6",
-    "redux": "^4.1.2"
+    "react-redux": "^7.2.6"
   },
   "devDependencies": {
     "@playwright/test": "^1.20.0-alpha-feb-11-2022",

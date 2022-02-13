@@ -34,10 +34,7 @@ export const createWrapper = (makeStore) => {
     const nextCallback = callback && callback(store)
     const initialProps = (nextCallback && (await nextCallback(context))) || {}
     const initialState = store.getState()
-    return {
-      initialProps,
-      initialState,
-    }
+    return { initialProps, initialState }
   }
 
   const getServerSideProps = (callback) => async (context) => await getProps(callback)(context)
@@ -63,13 +60,9 @@ export const createWrapper = (makeStore) => {
     }
   }
 
-  const hydrate = (state, store) => {
+  const hydrate = (store, state) => {
     if (!state) return
-
-    store.dispatch({
-      type: HYDRATE,
-      payload: state,
-    })
+    store.dispatch({ type: HYDRATE, payload: state })
   }
 
   const useHybridHydrate = (store, state) => {

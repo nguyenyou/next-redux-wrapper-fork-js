@@ -10,7 +10,6 @@ export default function Two() {
 }
 
 export async function getStaticProps() {
-  console.log('Two.getStaticProps')
   return {
     props: {
       title: 'two',

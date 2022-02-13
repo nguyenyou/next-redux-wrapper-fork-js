@@ -1,26 +1,29 @@
-import { createStore } from 'redux'
+import { createWrapper } from 'next-redux'
+import { configureStore, createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
-  value: 0,
-}
+export const counterSlice = createSlice({
+  name: 'counter',
+  initialState: {
+    value: 0,
+  },
+  reducers: {
+    increment: (state) => {
+      state.value += 1
+    },
+    decrement: (state) => {
+      state.value -= 1
+    },
+  },
+})
 
-// counter reducer
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'INCREMENT':
-      return { ...state, value: state.value + 1 }
-    case 'DECREMENT':
-      return { ...state, value: state.value - 1 }
-    case 'SPECIAL_CASE':
-      console.log('SPECIAL_CASE', action.payload)
-      return { ...state, value: action.payload.value }
-    default:
-      return state
-  }
-}
-
-export const store = createStore(reducer)
+export const { increment, decrement } = counterSlice.actions
 
 export const makeStore = () => {
-  return createStore(reducer)
+  return configureStore({
+    reducer: {
+      [counterSlice.name]: counterSlice.reducer,
+    },
+  })
 }
+
+export const wrapper = createWrapper(makeStore)

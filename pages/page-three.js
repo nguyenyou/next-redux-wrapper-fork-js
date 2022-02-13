@@ -10,7 +10,6 @@ export default function Three() {
 }
 
 Three.getInitialProps = async () => {
-  console.log('Three.getInitialProps')
   return {
     title: 'three',
   }
