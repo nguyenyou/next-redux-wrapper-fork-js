@@ -1,4 +1,4 @@
-import { createWrapper } from 'next-redux'
+import { createWrapper, HYDRATE } from '~/lib/next-redux'
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 
 export const counterSlice = createSlice({
@@ -12,6 +12,15 @@ export const counterSlice = createSlice({
     },
     decrement: (state) => {
       state.value -= 1
+    },
+  },
+  extraReducers: {
+    [HYDRATE]: (state, action) => {
+      console.log('HYDRATE', action.payload)
+      return {
+        ...state,
+        ...action.payload.counter,
+      }
     },
   },
 })
